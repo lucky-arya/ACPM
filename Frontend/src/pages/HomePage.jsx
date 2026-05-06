@@ -69,6 +69,8 @@ function CountUp({ end, suffix, duration = 2000 }) {
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 export default function HomePage() {
   const [currentHero, setCurrentHero] = useState(0);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -138,7 +140,7 @@ export default function HomePage() {
 
     setContactSubmitting(true);
     try {
-      const response = await fetch('/api/v1/contact', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

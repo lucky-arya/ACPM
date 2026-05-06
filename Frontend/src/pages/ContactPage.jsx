@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle, MessageCircle, MessageSquare, User, FileText, Heart } from 'lucide-react';
 import FloatingWhatsApp from '../components/FloatingWhatsApp';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 const faqs = [
   { q: 'How do I apply for membership?', a: 'Visit our Membership page and fill out the application form. Our team reviews applications within 5-7 working days.' },
   { q: 'What are the membership fees?', a: 'We offer an exclusive Lifetime membership for ₹2,500.' },
@@ -52,7 +54,7 @@ export default function ContactPage() {
     
     setIsSubmitting(true);
     try {
-      const response = await fetch('/api/v1/contact', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -24,6 +24,8 @@ const membershipTypes = [
   }
 ];
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
 const benefits = [
   { icon: Users, title: 'Networking', desc: 'Connect with Perfusionist across Maharashtra' },
   { icon: Award, title: 'Recognition', desc: 'Professional accreditation & certifications' },
@@ -157,7 +159,7 @@ export default function MembershipPage() {
         payload.append('recommendationLetter', formData.documents.recommendationLetter);
       }
 
-      const response = await fetch('/api/v1/membership/apply', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/membership/apply`, {
         method: 'POST',
         body: payload
       });
