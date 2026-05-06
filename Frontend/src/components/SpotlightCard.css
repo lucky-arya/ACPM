@@ -1,0 +1,65 @@
+.card-spotlight {
+  position: relative;
+  border-radius: 1.5rem;
+  border: 1px solid #222;
+  background-color: #111;
+  padding: 2rem;
+  overflow: hidden;
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  --spotlight-color: rgba(255, 255, 255, 0.05);
+}
+
+.card-spotlight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), var(--spotlight-color), transparent 80%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.card-spotlight:hover::before,
+.card-spotlight:focus-within::before {
+  opacity: 0.6;
+}
+
+.objective-spotlight-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8fbff 100%);
+  border: 2px solid #e6eef9;
+  padding: 2rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  box-shadow: 0 14px 30px -18px rgba(1, 45, 95, 0.28);
+}
+
+.objective-spotlight-card::after {
+  content: '';
+  position: absolute;
+  left: 1.2rem;
+  right: 1.2rem;
+  bottom: 0.95rem;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #0070c4, #36a3f6, #22d3ee);
+  opacity: 0;
+  transform: scaleX(0.5);
+  transform-origin: center;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.objective-spotlight-card:hover,
+.objective-spotlight-card:focus-within {
+  transform: translateY(-7px);
+  box-shadow: 0 22px 36px -18px rgba(1, 45, 95, 0.34);
+  border-color: #c9ddf7;
+}
+
+.objective-spotlight-card:hover::after,
+.objective-spotlight-card:focus-within::after {
+  opacity: 1;
+  transform: scaleX(1);
+}

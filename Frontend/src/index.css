@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #f0f7ff;
+  --color-primary-100: #e0effe;
+  --color-primary-200: #b9dffd;
+  --color-primary-300: #7cc5fb;
+  --color-primary-400: #36a3f6;
+  --color-primary-500: #0b83e8;
+  --color-primary-600: #0070c4;
+  --color-primary-700: #00589b;
+  --color-primary-800: #004672;
+  --color-primary-900: #002b4d;
+  
+  --color-secondary-50: #fff5f5;
+  --color-secondary-100: #ffe0e0;
+  --color-secondary-200: #ffbdbd;
+  --color-secondary-300: #ff8f8f;
+  --color-secondary-400: #f55555;
+  --color-secondary-500: #e31a1a;
+  --color-secondary-600: #c00;
+  --color-secondary-700: #a30000;
+  --color-secondary-800: #860000;
+  --color-secondary-900: #6a0000;
+  
+  --color-accent: #0891b2;
+  
+  --font-family-sans: 'Inter', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Hero Pattern Overlay */
+.hero-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Grid Pattern */
+.grid-pattern {
+  background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Dot Pattern */
+.dot-pattern {
+  background-image: radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Section Divider */
+.section-divider {
+  position: relative;
+}
+.section-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-600), var(--color-secondary-600));
+  border-radius: 2px;
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Slide In Animation */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+.animate-slide-right {
+  animation: slideInRight 0.6s ease-out forwards;
+}
+.animate-slide-up {
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+/* Card Hover Effects */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-secondary-600));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Button Styles */
+.btn-primary {
+  @apply bg-primary-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:bg-primary-700 hover:shadow-xl active:scale-[0.98];
+}
+
+.btn-secondary {
+  @apply bg-secondary-600 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:bg-secondary-700 hover:shadow-xl active:scale-[0.98];
+}
+
+.btn-outline {
+  @apply border-2 border-primary-600 text-primary-600 px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:bg-primary-600 hover:text-white active:scale-[0.98];
+}
+
+.btn-white {
+  @apply bg-white text-primary-700 px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:bg-gray-100 hover:shadow-xl active:scale-[0.98];
+}
+
+/* Input Styles */
+.input-field {
+  @apply w-full min-w-0 box-border px-12 py-3.5 rounded-xl border border-gray-200 bg-white focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 outline-none transition-all duration-200;
+}
+
+/* Section Styles */
+.section-badge {
+  @apply inline-flex items-center gap-2 px-4 py-2 bg-primary-50 text-primary-700 rounded-full text-sm font-semibold;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900;
+}
+
+.section-subtitle {
+  @apply text-lg md:text-xl text-gray-600 max-w-2xl text-center mx-auto;
+}
+
+/* Card Styles */
+.card {
+  @apply bg-white rounded-2xl shadow-lg transition-all duration-300;
+}
+
+.card-hover {
+  @apply hover:shadow-2xl hover:-translate-y-2;
+}
+
+/* Testimonial Carousel */
+.testimonial-card {
+  transition: all 0.5s ease;
+}
+.testimonial-card.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+  position: absolute;
+  pointer-events: none;
+}
+.testimonial-card.visible {
+  opacity: 1;
+  transform: scale(1);
+  position: relative;
+}
+
+/* Decorative Elements */
+.decorative-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.decorative-dots {
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* Reveal Countdown Animations */
+@keyframes float-up {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(calc((var(--drift, 0) - 0.5) * 100px));
+    opacity: 0;
+  }
+}
+
+.reveal-particle {
+  animation: float-up linear infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(1.1);
+  }
+}
