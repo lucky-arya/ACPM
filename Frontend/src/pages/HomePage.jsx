@@ -146,6 +146,7 @@ export default function HomePage() {
         body: JSON.stringify({
           name: contactForm.name,
           email: contactForm.email,
+          subject: 'Homepage Contact',
           message: contactForm.message,
           source: 'home-page'
         })

@@ -35,7 +35,7 @@ const buildContactAckHtml = ({ name, subject }) => {
             <h2 style="margin:0 0 12px;">We received your message</h2>
             <p style="margin:0 0 12px;">Hello ${name || "there"},</p>
             <p style="margin:0 0 12px;">Thank you for contacting ACPM. Our team has received your message and will reply shortly.</p>
-            <p style="margin:0;color:#6b7280;font-size:12px;">Subject: ${subject || "-"}</p>
+            <p style="margin:0;color:#6b7280;font-size:12px;">Subject: ${subject || "General Inquiry"}</p>
         </div>
     `;
 };
@@ -49,7 +49,7 @@ const sendContactMessage = asyncHandler(async (req, res) => {
     if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         validationErrors.email = "Invalid email format";
     }
-    if (!subject?.trim()) validationErrors.subject = "Subject is required";
+    const normalizedSubject = subject?.trim() || "";
     if (!message?.trim()) validationErrors.message = "Message is required";
 
     let normalizedPhone = "";
@@ -70,7 +70,7 @@ const sendContactMessage = asyncHandler(async (req, res) => {
         "Name": name,
         "Email": email,
         "Phone": normalizedPhone || "-",
-        "Subject": subject,
+        "Subject": normalizedSubject || "General Inquiry",
         "Message": message,
         "Source": source || "unknown"
     };
@@ -88,7 +88,7 @@ const sendContactMessage = asyncHandler(async (req, res) => {
     await transporter.sendMail({
         from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
         to: toAddress,
-        subject: `Contact Message - ${subject}`,
+        subject: `Contact Message - ${normalizedSubject || "General Inquiry"}`,
         text,
         html,
         replyTo: email
@@ -98,8 +98,8 @@ const sendContactMessage = asyncHandler(async (req, res) => {
         from: process.env.EMAIL_FROM || process.env.EMAIL_USER,
         to: email,
         subject: "We received your message",
-        text: `Hello ${name || "there"},\n\nThank you for contacting ACPM. Our team has received your message and will reply shortly.\n\nSubject: ${subject || "-"}`,
-        html: buildContactAckHtml({ name, subject })
+        text: `Hello ${name || "there"},\n\nThank you for contacting ACPM. Our team has received your message and will reply shortly.\n\nSubject: ${normalizedSubject || "General Inquiry"}`,
+        html: buildContactAckHtml({ name, subject: normalizedSubject })
     });
 
     return res
